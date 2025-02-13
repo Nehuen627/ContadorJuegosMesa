@@ -1,89 +1,57 @@
-import React from 'react'
+const pointsDisplay = ({ game, players, actualMode }) => {
 
-const pointsDisplay = ({game, players}) => {
-  
-  if(game === "Roomy"){
-    const oldPlayer = players.find((e) => e.pts <= -100)
-    if(oldPlayer) {
-      const others = players.filter((p) => p.playerName !== oldPlayer.playerName)
-      return (
-        <div>
-          <div>
-            <h2>Ha ganado:</h2>
-            <h2>{oldPlayer.playerName}</h2>
-            <h3>{oldPlayer.points}</h3>
-          </div>
-          <div>
-            <p>Perdedores:</p>
+  const result = (winner, others) => {
+    return (
+      <div className={`${actualMode}-pointsDiv2 pointsDiv2`}>
+        <div className={`${actualMode}-winnerDiv winnerDiv`}>
+          <p className={`${actualMode}-p`}>Ha ganado:</p>
+          <h2 className={`${actualMode}-h2Winner`}>{winner.playerName}</h2>
+          <h3 className={`${actualMode}-h3Winner`}>{winner.pts}</h3>
+        </div>
+        <div className={`${actualMode}-loosersDiv loosersDiv`}>
+          <p className={`${actualMode}-p`}>Perdedores:</p>
+          {others.map((p) => (
+            <div className={`${actualMode}-loosersDiv1 loosersDiv1`} key={p.playerName}>
+              <h3 className={`${actualMode}-h3Loosers`}>{p.playerName}</h3>
+              <h4 className={`${actualMode}-h4Loosers`}>{p.pts}</h4>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
-            {others.map((p) => (
-              <div>
-                <h3>{p.playerName}</h3>
-                <h4>{p.pts}</h4>
-              </div>
-            ))}
-          </div>
-        </div>
-      )
-    }
-  } else if(game === "Canasta"){
-    const oldPlayer = players.find((e) => e.pts >= 5000)
-    if(oldPlayer) {
-      const others = players.filter((p) => p.playerName !== oldPlayer.playerName)
-      return (
-        <div>
-          <div>
-            <h2>Ha ganado:</h2>
-            <h2>{oldPlayer.playerName}</h2>
-            <h3>{oldPlayer.pts}</h3>
-          </div>
-          <div>
-            <p>Perdedores:</p>
+  let winner = null;
 
-            {others.map((p) => (
-              <div>
-                <h3>{p.playerName}</h3>
-                <h4>{p.pts}</h4>
-              </div>
-            ))}
-          </div>
-        </div>
-      )
+  if (game === "Roomy") {
+    const eligiblePlayers = players.filter((e) => e.pts <= -100);
+    if (eligiblePlayers.length > 0) {
+      winner = eligiblePlayers.sort((a, b) => a.pts - b.pts)[0]; 
     }
-  } else if(game === "10mil") {
-    const oldPlayer = players.find((e) => e.pts >= 10000)
-    if(oldPlayer) {
-      const others = players.filter((p) => p.playerName !== oldPlayer.playerName)
-      return (
-        <div>
-          <div>
-            <h2>Ha ganado:</h2>
-            <h2>{oldPlayer.playerName}</h2>
-            <h3>{oldPlayer.pts}</h3>
-          </div>
-          <div>
-            <p>Perdedores:</p>
-            {others.map((p) => (
-              <div>
-                <h3>{p.playerName}</h3>
-                <h4>{p.pts}</h4>
-              </div>
-            ))}
-          </div>
-        </div>
-      )
+  } else if (game === "Canasta") {
+    const eligiblePlayers = players.filter((e) => e.pts >= 5000);
+    if (eligiblePlayers.length > 0) {
+      winner = eligiblePlayers.sort((a, b) => b.pts - a.pts)[0]; 
     }
-  } 
+  } else if (game === "10mil") {
+    const eligiblePlayers = players.filter((e) => e.pts >= 10000);
+    if (eligiblePlayers.length > 0) {
+      winner = eligiblePlayers.sort((a, b) => b.pts - a.pts)[0];
+    }
+  }
+
+  if (winner) {
+    const others = players.filter((p) => p.playerName !== winner.playerName);
+    return result(winner, others);
+  }
 
   const display = players.map((p) => (
-    <div>
-      <h4>{p.playerName}</h4>
-      <h5>Puntos: {p.pts}</h5>
+    <div className={`${actualMode}-pointsDiv`} key={p.playerName}>
+      <h4 className={`${actualMode}-h4`}>{p.playerName}</h4>
+      <h5 className={`${actualMode}-h5`}>Puntos: {p.pts}</h5>
     </div>
-  ))
-  return (
-    <div>{display}</div>
-  )
-}
+  ));
+  return <div className="pointDisplayContent">{display}</div>;
+};
 
-export default pointsDisplay
+export default pointsDisplay;

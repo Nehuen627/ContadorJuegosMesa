@@ -1,6 +1,7 @@
 import React from 'react'
+import './gameBtn.css'
 
-const GameBtn = ({title, id, setActiveTab}) => {
+const GameBtn = ({title, id, setActiveTab, actualMode}) => {
     const selectGame = (() => {
         console.log(`juego seleccionado: ${title}`);
 
@@ -8,7 +9,7 @@ const GameBtn = ({title, id, setActiveTab}) => {
         setActiveTab(title)
     })
   return (
-    <button id={id} onClick={selectGame}>{title}</button>
+    <button className={`btnGame ${actualMode}-btnGame`} id={id} onClick={selectGame}>{title}</button>
   )
 }
 

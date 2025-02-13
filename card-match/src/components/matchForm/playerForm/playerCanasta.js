@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react'
 
 
-const PlayerCanasta = ({player, playersGameCanasta ,setPlayersGameCanasta}) => {
+const PlayerCanasta = ({player, playersGameCanasta ,setPlayersGameCanasta, actualMode}) => {
   const [actualPlayer, setActualPlayer] = useState({"pointsGained": 0, "corte": false, "pura": 0, "impura": 0, "rojos": 0,"playerName": player.playerName})
   const [isChecked, setIsChecked] = useState(false)
 
 
-  /* useEffect(() => {
-    console.log(actualPlayer);
+  useEffect(() => {
+    console.log(actualPlayer, "entramos a useefect");
+    const playerData = playersGameCanasta.find(p => p.playerName === player.playerName);
     
-  }, [actualPlayer]) */
+    if (playerData) {
+        setActualPlayer({...playerData});
+    }
+    
+  }, [playersGameCanasta])
   
   const handlePts = (value) => {
     actualPlayer.pointsGained = Number(value)
@@ -62,17 +67,25 @@ const PlayerCanasta = ({player, playersGameCanasta ,setPlayersGameCanasta}) => {
   return (
     <div>
         
-            <h3>{player.playerName}</h3>
-            <h4>Canasta Pura:</h4>
-            <input type='number' placeholder='Canastas obtenidas' onChange={(e) => handlePura(e.target.value)}></input>
-            <h4>Canasta Impura:</h4>
-            <input type='number' placeholder='Canastas obtenidas' onChange={(e) => handleImpura(e.target.value)}></input>
-            <h4>Rojos(1/2/3/4):</h4>
-            <input type='number' placeholder='Rojos obtenidos' onChange={(e) => handleRojos(e.target.value)}></input>
-            <h4>Puntos totales:</h4>
-            <input type='number' placeholder='Puntos obtenidos' onChange={(e) => handlePts(e.target.value)}></input>
-            <h4>Corte:</h4>
-            <input type='checkbox' checked={isChecked} onChange={handleCorte}></input>
+            <h3 className={`${actualMode}-h3Py`}>{player.playerName}</h3>
+            <p className={`${actualMode}-p`}>Canasta Pura:</p>
+            <input className={`${actualMode}-input`} value={actualPlayer.pura  || ''} type='number' placeholder='Canastas obtenidas' onChange={(e) => handlePura(e.target.value)}></input>
+            <hr className={`${actualMode}-bar bar4`}></hr>
+
+            <p className={`${actualMode}-p`}>Canasta Impura:</p>
+            <input className={`${actualMode}-input`} value={actualPlayer.impura  || ''} type='number' placeholder='Canastas obtenidas' onChange={(e) => handleImpura(e.target.value)}></input>
+            <hr className={`${actualMode}-bar bar4`}></hr>
+
+            <p className={`${actualMode}-p`}>Rojos(1/2/3/4):</p>
+            <input className={`${actualMode}-input`} value={actualPlayer.rojos  || ''} type='number' placeholder='Rojos obtenidos' onChange={(e) => handleRojos(e.target.value)}></input>
+            <hr className={`${actualMode}-bar bar4`}></hr>
+
+            <p className={`${actualMode}-p`}>Puntos totales:</p>
+            <input className={`${actualMode}-input`} value={actualPlayer.pointsGained  || ''} type='number' placeholder='Puntos obtenidos' onChange={(e) => handlePts(e.target.value)}></input>
+            <hr className={`${actualMode}-bar bar4`}></hr>
+
+            <p className={`${actualMode}-p`}>Corte:</p>
+            <input className={`${actualMode}-inputCheckbox`} value={actualPlayer.corte } type='checkbox' checked={isChecked} onChange={handleCorte}></input>
         
     </div>
   )

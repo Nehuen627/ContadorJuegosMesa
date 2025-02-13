@@ -4,8 +4,9 @@ import PlayerCanasta from './playerForm/playerCanasta.js';
 import PlayerSimple from './playerForm/playerSimple.js';
 import Player10mil from './playerForm/player10mil.js';
 import PointsDisplay from '../pointsDisplay/pointsDisplay.js';
+import './matchForm.css'
 
-const MatchForm = () => {
+const MatchForm = ({actualMode}) => {
     const [activeTab, setActiveTab] = useState('');
     const [players, setPlayers] = useState([]);
 /*     const [playersActiveTab, setPlayersActiveTab] = useState([]) */
@@ -67,8 +68,6 @@ const MatchForm = () => {
         let canasta = []
         let mil = []
         players.forEach((p) => {
-            console.log(p);
-            
             if(p.game === "Roomy"){
                 roomy.push(p)
             } else if(p.game === "Canasta") {
@@ -79,6 +78,7 @@ const MatchForm = () => {
             setPlayersRoomy(roomy)
             setPlayersCanasta(canasta)
             setPlayers10mil(mil)
+
 
         })
         return true
@@ -112,19 +112,16 @@ const MatchForm = () => {
         const updatedPlayers = players.filter((player) => player.playerName !== playerName);
         setPlayers([...updatedPlayers]);
         localStorage.setItem("players", JSON.stringify(updatedPlayers));
-        /* if(game === "Roomy"){
+        if(game === "Roomy"){
             const updatedPlayersGame = playersGameRoomy.filter((player) => player.playerName !== playerName);
             setPlayersGameRoomy([...updatedPlayersGame])
-            setPlayersRoomy([...updatedPlayersGame])
         } else if(game === "Canasta") {
             const updatedPlayersGame = playersGameCanasta.filter((player) => player.playerName !== playerName);
             setPlayersGameCanasta([...updatedPlayersGame])
-            setPlayersCanasta([...updatedPlayersGame])
         } else if (game === "10mil") {
             const updatedPlayersGame = playersGame10.filter((player) => player.playerName !== playerName);
             setPlayersGame10([...updatedPlayersGame])
-            setPlayers10mil([...updatedPlayersGame])
-        } */
+        }
         
     };
 
@@ -144,6 +141,7 @@ const MatchForm = () => {
                     player={p}
                     playersGameRoomy={playersGameRoomy}
                     setPlayersGameRoomy={setPlayersGameRoomy}
+                    actualMode={actualMode}
                 />
             ))
         } else if (activeTab === "10mil" ) {
@@ -155,6 +153,7 @@ const MatchForm = () => {
                     player={p}
                     playersGame10={playersGame10}
                     setPlayersGame10={setPlayersGame10}
+                    actualMode={actualMode}
                 />
             ))
         } else if ( activeTab === "Canasta" ){
@@ -166,6 +165,7 @@ const MatchForm = () => {
                     player={p}
                     playersGameCanasta={playersGameCanasta}
                     setPlayersGameCanasta={setPlayersGameCanasta}
+                    actualMode={actualMode}
                 />
             ))
         }
@@ -209,10 +209,12 @@ const MatchForm = () => {
         
         const calculateRoomy = (e) => {
             e.preventDefault()  
+            
             let playersCalculated = [...players]
 
             
             playersGameRoomy.forEach((p)=> {
+                
                 const playersCalculated1 = playersCalculated.filter((player) => player.playerName !== p.playerName)
                 playersCalculated = playersCalculated1
                 const oldPlayer = players.find((e) => e.playerName === p.playerName)
@@ -249,12 +251,20 @@ const MatchForm = () => {
 
     const calculateCanasta = (e) => {
         e.preventDefault()  
+        console.log("entramos a calcular");
+
         let playersCalculated = [...players]
-        console.log(playersCalculated);
+        console.log(playersGameCanasta);
+        
         playersGameCanasta.forEach((p)=> {
+            console.log("entramos a cada uno", p);
+
             const playersCalculated1 = playersCalculated.filter((player) => player.playerName !== p.playerName)
             playersCalculated = playersCalculated1
+            
+            
             const oldPlayer = players.find((e) => e.playerName === p.playerName)
+            console.log(oldPlayer, "oldplayers find");
             
 
             let points = oldPlayer.pts
@@ -288,50 +298,72 @@ const MatchForm = () => {
             }
             playersCalculated.push(ply)
             setPlayersCanasta([...playersCanasta, ply])
+            console.log("playerscalculatedfinal", playersCalculated);
             
         })
         
         setPlayers(playersCalculated)
         localStorage.setItem("players", JSON.stringify(playersCalculated))
+
+
+        const resetPlayersGameCanasta = playersGameCanasta.map(p => ({
+            playerName: p.playerName,
+            pointsGained: 0,
+            corte: false,
+            pura: 0,
+            impura: 0,
+            rojos: 0
+        }));
+        
+        setPlayersGameCanasta(resetPlayersGameCanasta);
     }
 
     return (
-    <div>
-        {players.map((p) => (
-        <div>
-            <h5>{p.playerName}</h5>
-            <button onClick={() => handleDelete(p.playerName, p.game)}>Borrar</button>
+    <div className='matchFormContent'>
+        <hr className={`${actualMode}-bar bar3`}></hr>
+        <Selector setActiveTab={setActiveTab} actualMode={actualMode}/>
+        <div className={`formDiv ${actualMode}-formDiv`}>
+            <form onSubmit={addPlayer}>
+                <input className={`${actualMode}-inputAdd`} type='text' value={playerName} onChange={(e) => setPlayerName(e.target.value)} placeholder='Nombre del jugador'></input>
+                <button className={`${actualMode}-btnAdd`} type='submit'>AGREGAR</button>
+            </form>
         </div>
-    ))}
-        <form onSubmit={addPlayer}>
-            <input type='text' value={playerName} onChange={(e) => setPlayerName(e.target.value)} placeholder='Nombre del jugador'></input>
-            <button type='submit'>AGREGAR JUGADOR</button>
-        </form>
-        <Selector setActiveTab={setActiveTab}/>
+        <hr className={`${actualMode}-bar bar3`}></hr>
+        <div className='divPlayers'>
+            <h5 className={`${actualMode}-h5`}>Jugadores:</h5>
+
+            {players.map((p) => (
+                <div className={`${actualMode}-divPlayers`}>
+                    <h5 className={`${actualMode}-h5Py`}>{p.playerName}</h5>
+                    <button className={`${actualMode}-btnDelete`} onClick={() => handleDelete(p.playerName, p.game)}>Borrar</button>
+                </div>
+            ))}
+        </div>
+        <hr className={`${actualMode}-bar bar2`}></hr>
         {activeTab === "Roomy" && (
-            <div>
-                <h2>Roomy</h2>
-                <form onSubmit={calculateRoomy}>
-                    {roundRoomy}
-                    <button type='submit'>CALCULAR</button>
+            <div className={`divGame ${actualMode}-divGame`}>
+                <h2 className={`${actualMode}-h2`}>Roomy</h2>
+                <form onSubmit={calculateRoomy} className={`gameForm ${actualMode}-gameForm`}>
+                    <div className='gameDiv'>{roundRoomy}</div>
+                    <button className={`${actualMode}-btnCalculate`} type='submit'>CALCULAR</button>
                 </form>
             </div>
         )}
         {activeTab === "Canasta" && (
-            <div>
-                <h2>Canasta</h2>
-                <form onSubmit={calculateCanasta}>
-                    {roundCanasta}
-                    <button type='submit'>CALCULAR</button>
+            <div className={`divGame ${actualMode}-divGame`}>
+                <h2 className={`${actualMode}-h2`}>Canasta</h2>
+                <form onSubmit={calculateCanasta} className={`gameForm ${actualMode}-gameForm`}>
+                    <div className='gameDiv'>{roundCanasta}</div>
+                    <button className={`${actualMode}-btnCalculate`} type='submit'>CALCULAR</button>
                 </form>
             </div>
         )}
         {activeTab === "10mil" && (
-            <div>
-                <h2>10Mil</h2>
-                <form onSubmit={calculate10}>
-                    {round10mil}
-                    <button type='submit'>CALCULAR</button>
+            <div className={`divGame ${actualMode}-divGame`}>
+                <h2 className={`${actualMode}-h2`}>10Mil</h2>
+                <form onSubmit={calculate10} className={`gameForm ${actualMode}-gameForm`}>
+                    <div className='gameDiv'>{round10mil}</div>
+                    <button className={`${actualMode}-btnCalculate`} type='submit'>CALCULAR</button>
                 </form>
             </div>
             
@@ -339,24 +371,28 @@ const MatchForm = () => {
 
 
 
-
-        <div>
+        <hr className={`${actualMode}-bar bar`}></hr>
+        <div className={`${actualMode}-pointDisplay pointDisplay`}>
+            <h2 className={`${actualMode}-h2`}>Puntuación</h2>
             {activeTab === "Roomy" && (
                 <PointsDisplay
                 game={activeTab}
                 players={playersRoomy}
+                actualMode={actualMode}
                 />
             )}
             {activeTab === "Canasta" && (
                 <PointsDisplay
                 game={activeTab}
                 players={playersCanasta}
+                actualMode={actualMode}
                 />
             )}
             {activeTab === "10mil" && (
                 <PointsDisplay
                 game={activeTab}
                 players={players10mil}
+                actualMode={actualMode}
                 />
             )}
         </div>

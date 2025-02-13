@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Player10mil = ({player, playersGame10, setPlayersGame10}) => {
+const Player10mil = ({player, playersGame10, setPlayersGame10, actualMode}) => {
   const [actualPlayer, setActualPlayer] = useState({"pointsGained": 0, "playerName": player.playerName})
   
   const handlePts = (value) => {
@@ -26,9 +26,9 @@ const Player10mil = ({player, playersGame10, setPlayersGame10}) => {
   return (
     <div>
         
-          <h3>{player.playerName}</h3> 
-            <h4>Puntos:</h4>
-            <input type='number' placeholder='Puntos obtenidos' onChange={(e) => handlePts(e.target.value)}></input>
+          <h3 className={`${actualMode}-h3Py`}>{player.playerName}</h3> 
+            <p className={`${actualMode}-p`}>Puntos:</p>
+            <input className={`${actualMode}-input`} type='number' placeholder='Puntos obtenidos' onChange={(e) => handlePts(e.target.value)}></input>
         
     </div>
   )

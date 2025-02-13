@@ -1,0 +1,47 @@
+@use '../../../styles/colours.scss' as a;
+
+.btnGame {
+    border-radius: 35px;
+    padding: 5px 40px;
+    transition: 0.2s;
+    margin: 5px 10px 15px 10px;
+    font-weight: 600;
+}
+
+.CM1-btnGame {
+    color: a.$CM1-Light2;
+    background-color: a.$CM1-Dark;
+
+    border: a.$CM1-Neutro;
+    box-shadow: 0px 0px 0px 2px a.$CM1-Neutro;
+}
+.CM2-btnGame {
+    color: a.$CM2-Light2;
+    background-color: a.$CM2-Dark;
+
+    border: a.$CM2-Neutro;
+    box-shadow: 0px 0px 0px 2px a.$CM2-Neutro;
+}
+.CM3-btnGame {
+    color: a.$CM3-Light2;
+    background-color: a.$CM3-Dark;
+
+    border: a.$CM3-Neutro;
+    box-shadow: 0px 0px 0px 2px a.$CM3-Neutro;
+}
+.CM1-btnGame:hover,.CM2-btnGame:hover  ,.CM3-btnGame:hover {
+    scale: 1.1;
+    transition: 0.2s;
+}
+.CM1-btnGame:hover{
+    color:a.$CM1-Acent
+    
+}
+.CM2-btnGame:hover{
+    color:a.$CM2-Acent
+
+}
+.CM3-btnGame:hover{
+    color:a.$CM3-Acent
+
+}

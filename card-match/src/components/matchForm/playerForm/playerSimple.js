@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const PlayerSimple = ({player, playersGameRoomy, setPlayersGameRoomy}) => {
+const PlayerSimple = ({player, playersGameRoomy, setPlayersGameRoomy, actualMode}) => {
   const [actualPlayer, setActualPlayer] = useState({"pointsGained": 0, "corte": false, "playerName": player.playerName})
   const [isChecked, setIsChecked] = useState(false)
 
@@ -36,11 +36,12 @@ const PlayerSimple = ({player, playersGameRoomy, setPlayersGameRoomy}) => {
   return (
     <div>
         
-            <h3>{player.playerName}</h3>
-            <h4>Puntos:</h4>
-            <input type='number' placeholder='Puntos obtenidos' onChange={(e) => handlePts(e.target.value)}></input>
-            <h4>Corte:</h4>
-            <input type='checkbox' checked={isChecked} onChange={handleCorte}></input>
+            <h3 className={`${actualMode}-h3Py`}>{player.playerName}</h3>
+            <p className={`${actualMode}-p`}>Puntos:</p>
+            <input className={`${actualMode}-input`} type='number' placeholder='Puntos obtenidos' onChange={(e) => handlePts(e.target.value)}></input>
+            <hr className={`${actualMode}-bar bar4`}></hr>
+            <p className={`${actualMode}-p`}>Corte:</p>
+            <input className={`${actualMode}-inputCheckbox`} type='checkbox' checked={isChecked} onChange={handleCorte}></input>
         
     </div>
   )
