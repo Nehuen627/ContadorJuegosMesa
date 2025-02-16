@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 const PlayerSimple = ({player, playersGameRoomy, setPlayersGameRoomy, actualMode}) => {
   const [actualPlayer, setActualPlayer] = useState({"pointsGained": 0, "corte": false, "playerName": player.playerName})
