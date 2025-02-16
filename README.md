@@ -1,4 +1,4 @@
-# 🃏 Card Match Game
+# 🃏 Card Match Counter
 
 Un contador de puntaje para juegos con cartas o dados desarrollado con React.
 
