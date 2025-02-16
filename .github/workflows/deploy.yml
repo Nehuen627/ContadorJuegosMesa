@@ -21,16 +21,16 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        cd .card-match
+        cd card-match
         npm install
 
     - name: Build React App
       run: |
-        cd .card-match
+        cd card-match
         npm run build
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        publish_dir: .card-match/build
+        publish_dir: card-match/build
         github_token: ${{ secrets.GITHUB_TOKEN }}
