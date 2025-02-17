@@ -17,7 +17,7 @@ const PlayerSimple = ({player, playersGameRoomy, setPlayersGameRoomy, actualMode
 
   const handlePts = (value) => {
     actualPlayer.pointsGained = Number(value)
-    setActualPlayer(actualPlayer);
+    setActualPlayer({...actualPlayer});
     updatePlayer()
 
   }
@@ -28,7 +28,7 @@ const PlayerSimple = ({player, playersGameRoomy, setPlayersGameRoomy, actualMode
     
     actualPlayer.corte = corte
     
-    setActualPlayer(actualPlayer);
+    setActualPlayer({...actualPlayer});
     updatePlayer()
   }
   const updatePlayer = () => {
@@ -44,7 +44,7 @@ const PlayerSimple = ({player, playersGameRoomy, setPlayersGameRoomy, actualMode
     return true
   }
   return (
-    <div>
+    <div className={`${actualMode}-divPlayerGame divPlayerGame`}>
         
             <h3 className={`${actualMode}-h3Py`}>{player.playerName}</h3>
             <p className={`${actualMode}-p`}>Puntos:</p>

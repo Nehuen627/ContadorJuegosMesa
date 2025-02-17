@@ -91,6 +91,12 @@
 .matchFormContent .divGame .gameForm .gameDiv input::placeholder {
   color: black;
 }
+.matchFormContent .divGame .gameForm .gameDiv .divPlayerGame {
+  margin-top: 2%;
+  padding: 20px;
+  border-style: solid;
+  border-radius: 15px;
+}
 .matchFormContent .divGame .gameForm button {
   border-radius: 35px;
   width: 50%;
@@ -129,7 +135,7 @@
 .matchFormContent .pointDisplay {
   width: 60vh;
   margin: 3% auto;
-  padding: 10px 10px 10px 20px;
+  padding: 10px 10px 10px 10px;
   border-style: solid;
   border-radius: 15px;
 }
@@ -296,6 +302,18 @@
   border-color: #00CFFD;
 }
 
+.CM1-divPlayerGame {
+  border-color: #FF6F61;
+}
+
+.CM2-divPlayerGame {
+  border-color: #FFD700;
+}
+
+.CM3-divPlayerGame {
+  border-color: #00CFFD;
+}
+
 .CM1-btnCalculate {
   color: #49243E;
   background-color: #BB8493;
@@ -335,4 +353,25 @@
 .CM3-btnCalculate:hover {
   background-color: #00CFFD;
   font-weight: 800;
+}
+
+@media (max-width: 480px) {
+  .matchFormContent .formDiv {
+    width: 30vh;
+  }
+  .matchFormContent .formDiv form input::-moz-placeholder {
+    color: black;
+    padding: 10%;
+  }
+  .matchFormContent .formDiv form input::placeholder {
+    color: black;
+    padding: 10%;
+  }
+  .matchFormContent .divPlayers {
+    width: 35vh;
+  }
+  .matchFormContent .pointDisplay {
+    width: 30vh;
+    margin: 5% auto;
+  }
 }/*# sourceMappingURL=matchForm.css.map */

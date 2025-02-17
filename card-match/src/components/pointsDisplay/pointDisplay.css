@@ -2,9 +2,53 @@
   background-color: 1;
 }
 
-.pointsDiv2 .winnerDiv {
-  background-color: 1;
+.pointsDiv2 .winnerDiv p {
+  color: white;
+}
+.pointsDiv2 .winnerDiv h2 {
+  margin: 0.1;
+}
+.pointsDiv2 .winnerDiv h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.pointsDiv2 .loosersDiv p {
+  color: white;
+}
+.pointsDiv2 .loosersDiv h3, .pointsDiv2 .loosersDiv h4 {
+  margin: 0;
+  font-size: 1rem;
 }
 .pointsDiv2 .loosersDiv .loosersDiv1 {
-  background-color: 1;
+  margin-bottom: 2%;
+}
+
+.CM1-winnerDiv {
+  background-color: #BB8493;
+  box-shadow: 0px 0px 10px 2px #BB8493;
+}
+
+.CM2-winnerDiv {
+  background-color: #A91079;
+  box-shadow: 0px 0px 10px 2px #A91079;
+}
+
+.CM3-winnerDiv {
+  background-color: #b7128b;
+  box-shadow: 0px 0px 10px 2px #b7128b;
+}
+
+.CM1-loosersDiv {
+  background-color: #704264;
+  box-shadow: 0px 0px 5px 2px #704264;
+}
+
+.CM2-loosersDiv {
+  background-color: #570A57;
+  box-shadow: 0px 0px 5px 2px #570A57;
+}
+
+.CM3-loosersDiv {
+  background-color: #4d0a6a;
+  box-shadow: 0px 0px 5px 2px #4d0a6a;
 }/*# sourceMappingURL=pointDisplay.css.map */

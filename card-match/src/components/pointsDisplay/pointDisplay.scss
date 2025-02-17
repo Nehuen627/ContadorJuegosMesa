@@ -7,11 +7,56 @@
 
 .pointsDiv2{
     .winnerDiv{
-    background-color: 1;
+        p{
+            color: white;
+        }
+        h2{
+            margin: 0.1;
+        }
+        h3{
+            margin: 0;
+            font-size: 1.5rem;
+        }
     }
     .loosersDiv{
+        p{
+            color: white;
+        }
+        h3, h4{
+            margin: 0;
+            font-size: 1rem;
+        }
         .loosersDiv1{
-            background-color: 1;
+            margin-bottom: 2%;
         }
     }
 }
+.CM1-winnerDiv{
+    background-color: a.$CM1-Neutro;
+    box-shadow: 0px 0px 10px 2px a.$CM1-Neutro;
+}
+.CM2-winnerDiv{
+    background-color: a.$CM2-Neutro;
+    box-shadow: 0px 0px 10px 2px a.$CM2-Neutro;
+}
+.CM3-winnerDiv{
+    background-color: a.$CM3-Neutro;
+    box-shadow: 0px 0px 10px 2px a.$CM3-Neutro;
+}
+.CM1-loosersDiv{
+    background-color: a.$CM1-Dark;
+    box-shadow: 0px 0px 5px 2px a.$CM1-Dark;
+}
+.CM2-loosersDiv{
+    background-color: a.$CM2-Dark;
+    box-shadow: 0px 0px 5px 2px a.$CM2-Dark;
+}
+.CM3-loosersDiv{
+    background-color: a.$CM3-Dark;
+    box-shadow: 0px 0px 5px 2px a.$CM3-Dark;
+}
+
+
+@media (max-width: 480px) {
+
+   }

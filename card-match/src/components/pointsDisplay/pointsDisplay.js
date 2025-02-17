@@ -1,19 +1,21 @@
-const pointsDisplay = ({ game, players, actualMode }) => {
+import React from 'react'
+import './pointDisplay.css'
 
+const pointsDisplay = ({ game, players, actualMode }) => {
   const result = (winner, others) => {
     return (
       <div className={`${actualMode}-pointsDiv2 pointsDiv2`}>
         <div className={`${actualMode}-winnerDiv winnerDiv`}>
           <p className={`${actualMode}-p`}>Ha ganado:</p>
           <h2 className={`${actualMode}-h2Winner`}>{winner.playerName}</h2>
-          <h3 className={`${actualMode}-h3Winner`}>{winner.pts}</h3>
+          <h3 className={`${actualMode}-h3Winner`}>Pts: {winner.pts}</h3>
         </div>
         <div className={`${actualMode}-loosersDiv loosersDiv`}>
           <p className={`${actualMode}-p`}>Perdedores:</p>
           {others.map((p) => (
             <div className={`${actualMode}-loosersDiv1 loosersDiv1`} key={p.playerName}>
               <h3 className={`${actualMode}-h3Loosers`}>{p.playerName}</h3>
-              <h4 className={`${actualMode}-h4Loosers`}>{p.pts}</h4>
+              <h4 className={`${actualMode}-h4Loosers`}>Pts: {p.pts}</h4>
             </div>
           ))}
         </div>

@@ -17,7 +17,7 @@ const Player10mil = ({player, playersGame10, setPlayersGame10, actualMode}) => {
 
   const handlePts = (value) => {
     actualPlayer.pointsGained = Number(value)
-    setActualPlayer(actualPlayer);
+    setActualPlayer({...actualPlayer});
     updatePlayer()
 
   };
@@ -36,7 +36,7 @@ const Player10mil = ({player, playersGame10, setPlayersGame10, actualMode}) => {
     return true
   }
   return (
-    <div>
+    <div className={`${actualMode}-divPlayerGame divPlayerGame`}>
         
           <h3 className={`${actualMode}-h3Py`}>{player.playerName}</h3> 
             <p className={`${actualMode}-p`}>Puntos:</p>

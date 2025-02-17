@@ -60,3 +60,15 @@
     }
 }
 
+
+
+@media (max-width: 480px) {
+    .btnsSelector{
+        padding: 2% 0 2% 0;
+        button{
+            margin: 0 5px;
+            padding: 2px 5px;
+            transition: 0.2s;
+        }
+    }
+}

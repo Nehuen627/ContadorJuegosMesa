@@ -67,6 +67,7 @@
             display: flex;
             flex-direction: column;
             gap: 10%;
+            
             align-items: center;
             .gameDiv{
                 justify-content: center;
@@ -87,6 +88,12 @@
                 }
                 input::placeholder{
                     color: black;
+                }
+                .divPlayerGame{
+                    margin-top: 2%;
+                    padding: 20px;
+                    border-style: solid;
+                    border-radius: 15px;
                 }
             }
             button{
@@ -129,7 +136,7 @@
     .pointDisplay{
         width: 60vh;
         margin: 3% auto;
-        padding: 10px 10px 10px 20px;
+        padding: 10px 10px 10px 10px;
         border-style: solid;
         border-radius: 15px;
     }
@@ -292,6 +299,18 @@
     border-color: a.$CM3-Acent;
 
 }
+.CM1-divPlayerGame{
+    border-color: a.$CM1-Acent;
+}
+.CM2-divPlayerGame{
+    border-color: a.$CM2-Acent;
+
+}
+.CM3-divPlayerGame{
+    
+    border-color: a.$CM3-Acent;
+
+}
 
 
 .CM1-btnCalculate {
@@ -333,3 +352,33 @@
     background-color:a.$CM3-Acent;
     font-weight: 800;
 }
+
+
+
+
+@media (max-width: 480px) {
+    .matchFormContent {
+        .formDiv {
+            width: 30vh;
+            form{
+                
+                input::placeholder{
+                    color: black;
+                    padding: 10%;
+                }
+                
+            }
+        }
+        .divPlayers {
+            width: 35vh;
+            
+        }
+  
+       
+        .pointDisplay{
+            width: 30vh;
+            margin: 5% auto;
+        }
+    }
+    
+   }

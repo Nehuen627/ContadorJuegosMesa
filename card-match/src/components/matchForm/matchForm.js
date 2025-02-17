@@ -9,32 +9,13 @@ import './matchForm.css'
 const MatchForm = ({actualMode}) => {
     const [activeTab, setActiveTab] = useState('');
     const [players, setPlayers] = useState([]);
-/*     const [playersActiveTab, setPlayersActiveTab] = useState([]) */
     const [players10mil, setPlayers10mil] = useState([])
     const [playersCanasta, setPlayersCanasta] = useState([])
     const [playersRoomy, setPlayersRoomy] = useState([])
     const [ playerName, setPlayerName] = useState('')
-  /*   const [points10, setPoints10] = useState({})
-    const [pointsRoomy, setPointsRoomy] = useState({})
-    const [pointsCanasta, setPointsCanasta] = useState({}) */
-
     const [playersGame10, setPlayersGame10] = useState([]) 
     const [playersGameRoomy, setPlayersGameRoomy] = useState([]) 
     const [playersGameCanasta, setPlayersGameCanasta] = useState([]) 
-    
-    /* const [ corteRoomy, setCorteRoomy] = useState('no')
-    const [ ptsRoomy, setPtsRoomy] = useState(0)
-    const [ ptsRoomyTotal, setPtsRoomyTotal] = useState(0)
-    const [ corte10, setCorte10] = useState('no')
-    const [ pts10, setPts10] = useState(0)
-    const [ pts10Total, setPts10Total] = useState(0)
-    const [ corteCanasta, setCorteCanasta] = useState('no')
-    const [ puras, setPuras] = useState(0)
-    const [ impuras, setImpuras] = useState(0)
-    const [ rojos, setRojos] = useState(0)
-    const [ ptsCanastaTotal, setPtsCanastaTotal] = useState(0)
-    const [ ptsCanasta, setPtsCanasta] = useState(0)
-    const [ronda, setRonda] = useState(0) */
 
 
     useEffect(() => {        
@@ -86,7 +67,6 @@ const MatchForm = ({actualMode}) => {
     //add player
     const addPlayer = ((event) => {
         event.preventDefault();
-        setPlayerName(playerName)
         let newPlayer = {
             playerName,
             game: activeTab,
@@ -97,16 +77,9 @@ const MatchForm = ({actualMode}) => {
         setPlayers(playersLS)
 
         localStorage.setItem("players", JSON.stringify(playersLS))
-
-/* 
-        if(newPlayer.game === "Roomy"){
-            setPlayersRoomy([...playersRoomy, newPlayer])
-        } else if(newPlayer.game === "Canasta") {
-            setPlayersCanasta([...playersCanasta, newPlayer])
-        } else if (newPlayer.game === "10mil") {
-            setPlayers10mil([...players10mil, newPlayer])
-        } */
+        setPlayerName('')
     })
+
     //delete player
     const handleDelete = async (playerName, game) => {
         const updatedPlayers = players.filter((player) => player.playerName !== playerName);
@@ -204,6 +177,13 @@ const MatchForm = ({actualMode}) => {
 
         setPlayers(playersCalculated)
         localStorage.setItem("players", JSON.stringify(playersCalculated))
+        
+        const resetPlayersGame10 = playersGame10.map(p => ({
+            playerName: p.playerName,
+            pointsGained: 0
+        }));
+        
+        setPlayersGame10(resetPlayersGame10);
     }
 
         
@@ -247,24 +227,27 @@ const MatchForm = ({actualMode}) => {
 
             setPlayers(playersCalculated)
             localStorage.setItem("players", JSON.stringify(playersCalculated))
+
+            const resetPlayersGameRoomy = playersGameRoomy.map(p => ({
+                playerName: p.playerName,
+                pointsGained: 0
+            }));
+            
+            setPlayersGameRoomy(resetPlayersGameRoomy);
         }
 
     const calculateCanasta = (e) => {
         e.preventDefault()  
-        console.log("entramos a calcular");
 
         let playersCalculated = [...players]
-        console.log(playersGameCanasta);
         
         playersGameCanasta.forEach((p)=> {
-            console.log("entramos a cada uno", p);
 
             const playersCalculated1 = playersCalculated.filter((player) => player.playerName !== p.playerName)
             playersCalculated = playersCalculated1
             
             
             const oldPlayer = players.find((e) => e.playerName === p.playerName)
-            console.log(oldPlayer, "oldplayers find");
             
 
             let points = oldPlayer.pts
@@ -298,7 +281,6 @@ const MatchForm = ({actualMode}) => {
             }
             playersCalculated.push(ply)
             setPlayersCanasta([...playersCanasta, ply])
-            console.log("playerscalculatedfinal", playersCalculated);
             
         })
         

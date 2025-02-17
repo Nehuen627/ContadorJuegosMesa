@@ -102,4 +102,11 @@
 
 a {
   text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  /*    body {
+         overflow: hidden;
+     }
+  */
 }/*# sourceMappingURL=app.css.map */

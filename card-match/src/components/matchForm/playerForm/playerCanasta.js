@@ -29,7 +29,7 @@ const PlayerCanasta = ({player, playersGameCanasta ,setPlayersGameCanasta, actua
     
     actualPlayer.corte = corte
     
-    setActualPlayer(actualPlayer);
+    setActualPlayer({...actualPlayer});
     updatePlayer()
   }
   const handlePura = (value) => {
@@ -65,7 +65,7 @@ const PlayerCanasta = ({player, playersGameCanasta ,setPlayersGameCanasta, actua
     return true
   }
   return (
-    <div>
+    <div className={`${actualMode}-divPlayerGame divPlayerGame`}>
         
             <h3 className={`${actualMode}-h3Py`}>{player.playerName}</h3>
             <p className={`${actualMode}-p`}>Canasta Pura:</p>
