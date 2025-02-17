@@ -10,6 +10,7 @@ const PlayerSimple = ({player, playersGameRoomy, setPlayersGameRoomy, actualMode
       
       if (playerData) {
           setActualPlayer({...playerData});
+          setIsChecked(playerData.corte)
       }
       
     }, [playersGameRoomy])

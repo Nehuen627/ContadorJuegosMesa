@@ -229,8 +229,9 @@ const MatchForm = ({actualMode}) => {
             localStorage.setItem("players", JSON.stringify(playersCalculated))
 
             const resetPlayersGameRoomy = playersGameRoomy.map(p => ({
-                playerName: p.playerName,
-                pointsGained: 0
+                "playerName": p.playerName,
+                "pointsGained": 0,
+                "corte": false
             }));
             
             setPlayersGameRoomy(resetPlayersGameRoomy);
@@ -289,12 +290,12 @@ const MatchForm = ({actualMode}) => {
 
 
         const resetPlayersGameCanasta = playersGameCanasta.map(p => ({
-            playerName: p.playerName,
-            pointsGained: 0,
-            corte: false,
-            pura: 0,
-            impura: 0,
-            rojos: 0
+            "playerName": p.playerName,
+            "pointsGained": 0,
+            "corte": false,
+            "pura": 0,
+            "impura": 0,
+            "rojos": 0
         }));
         
         setPlayersGameCanasta(resetPlayersGameCanasta);

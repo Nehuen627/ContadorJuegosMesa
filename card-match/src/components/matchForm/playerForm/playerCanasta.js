@@ -12,6 +12,7 @@ const PlayerCanasta = ({player, playersGameCanasta ,setPlayersGameCanasta, actua
     
     if (playerData) {
         setActualPlayer({...playerData});
+        setIsChecked(playerData.corte)
     }
     
   }, [playersGameCanasta])

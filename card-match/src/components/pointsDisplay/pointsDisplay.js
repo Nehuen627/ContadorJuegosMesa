@@ -2,6 +2,8 @@ import React from 'react'
 import './pointDisplay.css'
 
 const pointsDisplay = ({ game, players, actualMode }) => {
+  console.log(players);
+  
   const result = (winner, others) => {
     return (
       <div className={`${actualMode}-pointsDiv2 pointsDiv2`}>
@@ -53,7 +55,7 @@ const pointsDisplay = ({ game, players, actualMode }) => {
       <h5 className={`${actualMode}-h5`}>Puntos: {p.pts}</h5>
     </div>
   ));
-  return <div className="pointDisplayContent">{display}</div>;
+  return <div className="pointDisplayContent" key={JSON.stringify(players)}>{display}</div>;
 };
 
 export default pointsDisplay;
