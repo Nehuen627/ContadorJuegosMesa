@@ -4,6 +4,16 @@ const PlayerSimple = ({player, playersGameRoomy, setPlayersGameRoomy, actualMode
   const [actualPlayer, setActualPlayer] = useState({"pointsGained": 0, "corte": false, "playerName": player.playerName})
   const [isChecked, setIsChecked] = useState(false)
 
+  useEffect(() => {
+      console.log(actualPlayer, "entramos a useefect");
+      const playerData = playersGameRoomy.find(p => p.playerName === player.playerName);
+      
+      if (playerData) {
+          setActualPlayer({...playerData});
+      }
+      
+    }, [playersGameRoomy])
+    
 
   const handlePts = (value) => {
     actualPlayer.pointsGained = Number(value)
@@ -38,10 +48,10 @@ const PlayerSimple = ({player, playersGameRoomy, setPlayersGameRoomy, actualMode
         
             <h3 className={`${actualMode}-h3Py`}>{player.playerName}</h3>
             <p className={`${actualMode}-p`}>Puntos:</p>
-            <input className={`${actualMode}-input`} type='number' placeholder='Puntos obtenidos' onChange={(e) => handlePts(e.target.value)}></input>
+            <input className={`${actualMode}-input`}  value={actualPlayer.pointsGained  || ''} type='number' placeholder='Puntos obtenidos' onChange={(e) => handlePts(e.target.value)}></input>
             <hr className={`${actualMode}-bar bar4`}></hr>
             <p className={`${actualMode}-p`}>Corte:</p>
-            <input className={`${actualMode}-inputCheckbox`} type='checkbox' checked={isChecked} onChange={handleCorte}></input>
+            <input className={`${actualMode}-inputCheckbox`}  value={actualPlayer.corte }  type='checkbox' checked={isChecked} onChange={handleCorte}></input>
         
     </div>
   )
