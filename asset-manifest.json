@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ContadorJuegosMesa/static/css/main.3656533b.css",
+    "main.js": "/ContadorJuegosMesa/static/js/main.68c5d5a3.js",
+    "static/js/488.8c1e8bf8.chunk.js": "/ContadorJuegosMesa/static/js/488.8c1e8bf8.chunk.js",
+    "index.html": "/ContadorJuegosMesa/index.html",
+    "main.3656533b.css.map": "/ContadorJuegosMesa/static/css/main.3656533b.css.map",
+    "main.68c5d5a3.js.map": "/ContadorJuegosMesa/static/js/main.68c5d5a3.js.map",
+    "488.8c1e8bf8.chunk.js.map": "/ContadorJuegosMesa/static/js/488.8c1e8bf8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3656533b.css",
+    "static/js/main.68c5d5a3.js"
+  ]
+}
